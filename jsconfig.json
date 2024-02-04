@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": "src",
+    "paths": {
+      "@Components": ["components/index"],
+      "@Components/*": ["components/*"],
+
+      "@Context": ["context/index"],
+      "@Context/*": ["context/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "public"]
+}
