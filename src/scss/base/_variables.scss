@@ -1,5 +1,5 @@
 //
-// COLORS
+//* COLORS
 
 $black:    #000000;
 $gray-900: #1f1f1f;
@@ -7,7 +7,7 @@ $gray-800: #404040;
 $gray-700: #5f5f5f;
 $gray-600: #727272;
 $gray-500: #9b9b9b;
-$gray-400: #bbbbbb;
+$gray-400: #cacaca;
 $gray-300: #dedede;
 $gray-200: #ececec;
 $gray-100: #f4f4f4;
@@ -15,10 +15,10 @@ $gray-50:  #fafafa;
 $white:    #ffffff;
 
 $textColor: $gray-900;
-$bodyColor: $gray-100;
+$bodyColor: $gray-50;
 
 //
-// FONTS
+//* FONTS
  
 $font: 'Hanken Grotesk', sans-serif;
 $font-header: $font;
@@ -31,6 +31,7 @@ $h3-font-size: $font-size-base * 1.75;
 $h4-font-size: $font-size-base * 1.5;
 $h5-font-size: $font-size-base * 1.25;
 $h6-font-size: $font-size-base;
+$sm-font-size: $font-size_base * 0.75;
 
 $font-sizes: (
   1: $h1-font-size,
@@ -42,7 +43,7 @@ $font-sizes: (
 );
 
 //
-// SPACING
+//* SPACING
 
 $spacer: $font-size-base;
 

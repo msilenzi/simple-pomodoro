@@ -1,0 +1,21 @@
+.btn {
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  outline: 0;
+  padding: map-get($spacers, 2) map-get($spacers, 3);
+  text-align: center;
+}
+
+.btn-sm {
+  padding: map-get($spacers, 1) map-get($spacers, 2);
+  font-size: $sm-font-size;
+}
+
+.btn-md {
+  padding: map-get($spacers, 2) map-get($spacers, 3);
+}
+
+.btn-lg {
+  padding: map-get($spacers, 3) map-get($spacers, 4);
+}
