@@ -3,6 +3,9 @@
     "jsx": "react",
     "baseUrl": "src",
     "paths": {
+      "@Assets": ["assets/index"],
+      "@Assets/*": ["assets/*"],
+
       "@Components": ["components/index"],
       "@Components/*": ["components/*"],
 
