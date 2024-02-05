@@ -1,0 +1,38 @@
+//
+//* SPACING
+
+$properties: (
+  m: margin,
+  p: padding
+);
+
+$sides: (
+  t: top,
+  b: bottom,
+  l: left,
+  r: right
+);
+
+@each $propertyLetter, $property in $properties {
+  @each $spaceNumber, $space in $spacers {
+    @each $sideLetter, $side in $sides {
+      .#{$propertyLetter}#{$sideLetter}-#{$spaceNumber} {
+        #{$property}-#{$side}: $space; 
+      }
+    }
+
+    .#{$propertyLetter}-#{$spaceNumber} {
+      #{$property}: $space; 
+    }
+
+    .#{$propertyLetter}x-#{$spaceNumber} {
+      #{$property}-left: $space; 
+      #{$property}-right: $space; 
+    }
+
+    .#{$propertyLetter}y-#{$spaceNumber} {
+      #{$property}-top: $space; 
+      #{$property}-bottom: $space; 
+    }
+  }
+}
