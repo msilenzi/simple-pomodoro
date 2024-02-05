@@ -1,6 +1,10 @@
+import { Pomodoro } from '@Components/pomodoro'
+
 function App() {
   return (
-    <div>App</div>
+    <>
+      <Pomodoro />
+    </>
   )
 }
 
