@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 function Steps() {
   return (
-    <div className="flex flex-centered g-3">
+    <div className="flex flex-centered g-4">
       <Step />
       <Step />
       <Step isActive />

@@ -3,7 +3,7 @@ import { Play, Reset, Skip } from '@Assets/icons'
 
 function Controls() {
   return (
-    <div className="flex flex-centered g-5 mt-4">
+    <div className="flex flex-centered g-5 mt-5">
       <Control icon={<Reset />} />
       <Control icon={<Play />} />
       <Control icon={<Skip />} />

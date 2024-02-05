@@ -19,7 +19,7 @@ body {
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
 }
 
 @each $n, $size in $font-sizes {

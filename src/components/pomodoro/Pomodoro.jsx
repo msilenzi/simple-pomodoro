@@ -5,7 +5,7 @@ import Timer from "./Timer"
 
 function Pomodoro() {
   return (
-    <div className="flex flex-centered flex-column g-4">
+    <div className="pomodoro flex flex-centered flex-column g-3">
       <Stages />
       <Timer />
       <Steps />

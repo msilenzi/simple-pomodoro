@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 function Stages() {
   return (
-    <div className="flex flex-centered g-2">
+    <div className="flex flex-centered g-2 mb-4">
       <Stage name="Pomodoro" isActive />
       <Stage name="Short Break" />
       <Stage name="Long Break" />
