@@ -1,6 +1,8 @@
 //
 //* SPACING
 
+// Margin y padding
+
 $properties: (
   m: margin,
   p: padding
@@ -33,6 +35,16 @@ $sides: (
     .#{$propertyLetter}y-#{$spaceNumber} {
       #{$property}-top: $space; 
       #{$property}-bottom: $space; 
+    }
+  }
+}
+
+// Gap
+
+@each $spaceNumber, $space in $spacers {
+  @if ($spaceNumber != auto) {
+    .g-#{$spaceNumber} {
+      gap: $space;
     }
   }
 }
