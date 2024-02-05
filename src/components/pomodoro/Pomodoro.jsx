@@ -5,12 +5,12 @@ import Timer from "./Timer"
 
 function Pomodoro() {
   return (
-    <>
+    <div className="flex flex-centered flex-column g-4">
       <Stages />
       <Timer />
       <Steps />
       <Controls />
-    </>
+    </div>
   )
 }
 

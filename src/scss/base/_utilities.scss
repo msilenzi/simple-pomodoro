@@ -67,3 +67,19 @@ $sides: (
     text-align: $ta;
   }
 }
+
+//
+//* FLEX
+
+.flex {
+  display: flex;
+}
+
+.flex-centered {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
