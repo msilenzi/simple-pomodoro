@@ -1,0 +1,63 @@
+//
+// COLORS
+
+$black:    #000000;
+$gray-900: #1f1f1f;
+$gray-800: #404040;
+$gray-700: #5f5f5f;
+$gray-600: #727272;
+$gray-500: #9b9b9b;
+$gray-400: #bbbbbb;
+$gray-300: #dedede;
+$gray-200: #ececec;
+$gray-100: #f4f4f4;
+$gray-50:  #fafafa;
+$white:    #ffffff;
+
+$textColor: $gray-900;
+$bodyColor: $gray-100;
+
+//
+// FONTS
+ 
+$font: 'Hanken Grotesk', sans-serif;
+$font-header: $font;
+$font-size-base: 1rem;
+
+//
+// BREAKPOINTS
+
+$breakpoints: (
+  xs:     0px,
+  sm:   576px,
+  md:   768px,
+  lg:   992px,
+  xl:  1200px,
+  xxl: 1400px
+);
+
+//
+// CONTAINERS
+
+$container-max-widths: (
+  sm:   540px,
+  md:   720px,
+  lg:   960px,
+  xl:  1140px,
+  xxl: 1320px
+);
+
+//
+// SPACING
+
+$spacer: $font-size-base;
+
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  auto: auto
+);

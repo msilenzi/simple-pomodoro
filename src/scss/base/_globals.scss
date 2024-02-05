@@ -1,0 +1,23 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $font;
+  font-size: $font-size-base;
+  color: $textColor;
+  background-color: $bodyColor;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
