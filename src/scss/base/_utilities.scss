@@ -36,3 +36,22 @@ $sides: (
     }
   }
 }
+
+//
+//* FONT WEIGHT
+
+@for $weight from 1 to 9 {
+  $fw: $weight * 100;
+  .fw-#{$fw} {
+    font-weight: $fw;
+  }
+}
+
+//
+//* TEXT ALIGN
+
+@each $ta in left, center, right {
+  .ta-#{$ta} {
+    text-align: $ta;
+  }
+}
