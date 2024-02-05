@@ -21,3 +21,13 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+@each $n, $size in $font-sizes {
+  h#{$n},
+  .h#{$n} {
+    font-size: $size;
+    margin: 0 0 $font-size-base / 2 0;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+}
