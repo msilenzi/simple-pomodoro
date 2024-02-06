@@ -11,6 +11,9 @@ function SettingModal({ visible, handleClose }) {
         handleClose={handleClose}
       />
       This is the modal content with some more content
+      <Modal.Footer>
+        <button className='btn btn-md btn-primary ml-auto mr-0' style={{display: 'block'}}>Hola</button>
+      </Modal.Footer>
     </Modal>
   )
 }
