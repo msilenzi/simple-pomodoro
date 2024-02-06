@@ -16,7 +16,7 @@ function SettingModalWrapper() {
   return (
     <>
       <SettingButton handleClick={showModal} />
-      <SettingModal visible={modalVisible} />
+      <SettingModal visible={modalVisible} handleClose={hideModal} />
     </>
   )
 }

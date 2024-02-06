@@ -13,7 +13,7 @@
 .modal {
   margin-top: 12vh;
   margin-top: 12svh;
-  max-width: 80vw;
+  max-width: 90vw;
   max-height: 80vh;
   max-height: 80svh;
   border: none;
@@ -60,5 +60,25 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.modal__header {
+  border-bottom: 1px solid $gray-300;
+  
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.modal__close-btn {
+  font-size: $h5-font-size;
+  color: $gray-500;
+  transition: .1s ease-in-out color;
+
+  &:hover {
+    color: $gray-700;
   }
 }
