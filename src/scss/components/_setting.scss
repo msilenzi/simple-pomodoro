@@ -1,0 +1,29 @@
+.setting__btn {
+  position: fixed;
+  bottom: map-get($spacers, 4);
+  right: map-get($spacers, 4);
+
+  background-color: $textColor;
+  color: $bodyColor;
+  padding: map-get($spacers, 3);
+  border-radius: 100%;
+  box-shadow: 0px 0.5px 2px transparentize($textColor, 0.85),
+    0px 2px 8px transparentize($textColor, 0.85);
+  transition: .1s ease-in-out all;
+
+  svg {
+    display: block;
+    width: $h6-font-size;
+    height: $h6-font-size;
+    fill: currentColor;
+    transition: .1s ease-in-out transform;
+  }
+
+  &:hover {
+    color: $gray-300;
+
+    svg {
+      transform: rotate(45deg);
+    }
+  }
+}

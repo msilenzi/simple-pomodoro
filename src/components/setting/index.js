@@ -1,3 +1,4 @@
+import SettingButton from './SettingButton'
 import SettingModal from './SettingModal'
 
-export { SettingModal }
+export { SettingButton, SettingModal }

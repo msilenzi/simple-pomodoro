@@ -1,6 +1,10 @@
+import { Gear } from "@Assets/icons"
+
 function SettingButton() {
   return (
-    <div>SettingButton</div>
+    <button className="setting__btn btn">
+      <Gear />
+    </button>
   )
 }
 export default SettingButton
