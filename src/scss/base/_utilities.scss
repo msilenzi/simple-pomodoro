@@ -19,22 +19,22 @@ $sides: (
   @each $spaceNumber, $space in $spacers {
     @each $sideLetter, $side in $sides {
       .#{$propertyLetter}#{$sideLetter}-#{$spaceNumber} {
-        #{$property}-#{$side}: $space; 
+        #{$property}-#{$side}: $space !important; 
       }
     }
 
     .#{$propertyLetter}-#{$spaceNumber} {
-      #{$property}: $space; 
+      #{$property}: $space !important; 
     }
 
     .#{$propertyLetter}x-#{$spaceNumber} {
-      #{$property}-left: $space; 
-      #{$property}-right: $space; 
+      #{$property}-left: $space !important; 
+      #{$property}-right: $space !important; 
     }
 
     .#{$propertyLetter}y-#{$spaceNumber} {
-      #{$property}-top: $space; 
-      #{$property}-bottom: $space; 
+      #{$property}-top: $space !important; 
+      #{$property}-bottom: $space !important; 
     }
   }
 }
