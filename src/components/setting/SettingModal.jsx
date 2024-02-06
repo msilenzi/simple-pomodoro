@@ -2,8 +2,8 @@ import { Modal } from "@Components/ui/modal"
 
 function SettingModal() {
   return (
-    <Modal>
-      This is the modal content
+    <Modal visible={true} size="medium">
+      This is the modal content with some more content
     </Modal>
   )
 }

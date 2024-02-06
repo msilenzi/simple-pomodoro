@@ -1,0 +1,37 @@
+.modal__container {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparentize($black, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.modal {
+  margin-top: 12vh;
+  margin-top: 12svh;
+  max-width: 80vw;
+  max-height: 80vh;
+  max-height: 80svh;
+  border: none;
+  background-color: $bodyColor;
+  color: $textColor;
+  border-radius: map-get($spacers, 3);
+  padding: map-get($spacers, 3);
+  box-shadow: 0px 0.5px 2px transparentize($textColor, 0.85),
+    0px 2px 8px transparentize($textColor, 0.85);
+
+  &.modal--small {
+    width: 300px;
+  }
+
+  &.modal--medium {
+    width: 400px;
+  }
+
+  &.modal--large {
+    width: 600px;
+  }
+}
