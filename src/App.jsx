@@ -1,12 +1,11 @@
 import { Pomodoro } from '@Components/pomodoro'
-import { SettingButton, SettingModal } from '@Components/setting'
+import { SettingModalWrapper } from '@Components/setting'
 
 function App() {
   return (
     <>
       <Pomodoro />
-      <SettingModal />
-      <SettingButton />
+      <SettingModalWrapper />
     </>
   )
 }

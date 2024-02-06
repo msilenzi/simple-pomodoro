@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types'
 
 function Modal({ children, visible, size, ...otherProps }) {
+  if (!visible) return null
+
   return (
     <div className="modal__container">
-      <dialog {...otherProps} className={`modal modal--${size}`} open={visible}>
+      <dialog {...otherProps} className={`modal modal--${size}`} open>
         {children}
       </dialog>
     </div>
