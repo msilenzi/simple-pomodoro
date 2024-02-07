@@ -5,36 +5,36 @@
 
 $properties: (
   m: margin,
-  p: padding
+  p: padding,
 );
 
 $sides: (
   t: top,
   b: bottom,
   l: left,
-  r: right
+  r: right,
 );
 
 @each $propertyLetter, $property in $properties {
   @each $spaceNumber, $space in $spacers {
     @each $sideLetter, $side in $sides {
       .#{$propertyLetter}#{$sideLetter}-#{$spaceNumber} {
-        #{$property}-#{$side}: $space !important; 
+        #{$property}-#{$side}: $space !important;
       }
     }
 
     .#{$propertyLetter}-#{$spaceNumber} {
-      #{$property}: $space !important; 
+      #{$property}: $space !important;
     }
 
     .#{$propertyLetter}x-#{$spaceNumber} {
-      #{$property}-left: $space !important; 
-      #{$property}-right: $space !important; 
+      #{$property}-left: $space !important;
+      #{$property}-right: $space !important;
     }
 
     .#{$propertyLetter}y-#{$spaceNumber} {
-      #{$property}-top: $space !important; 
-      #{$property}-bottom: $space !important; 
+      #{$property}-top: $space !important;
+      #{$property}-bottom: $space !important;
     }
   }
 }
@@ -100,4 +100,12 @@ $sides: (
 
 .flex-column {
   flex-direction: column;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
 }

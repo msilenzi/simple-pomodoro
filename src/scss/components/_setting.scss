@@ -46,3 +46,8 @@
     cursor: pointer;
   }
 }
+
+.setting__divider {
+  border: none;
+  border-bottom: solid 1px $gray-300;
+}

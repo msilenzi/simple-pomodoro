@@ -4,7 +4,7 @@ function InputGroup({ id, type, label, ...customProps }) {
   return (
     <div className="input-group">
       <label htmlFor={id}>{label}</label>
-      <input {...customProps} id={id} type={type} />
+      <input {...customProps} id={id} name={id} type={type} />
     </div>
   )
 }

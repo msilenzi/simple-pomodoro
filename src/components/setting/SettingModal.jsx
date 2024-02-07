@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { Modal } from '@Components/ui/modal'
-import { InputGroup } from '@Components/ui/form'
+import { InputGroup, ToggleSwitch } from '@Components/ui/form'
 
 function SettingModal({ visible, handleClose }) {
   return (
@@ -33,6 +33,25 @@ function SettingModal({ visible, handleClose }) {
           <TimeOption title="Large" pomodoro="45" short="8" long="30" />
           <TimeOption title="Normal" pomodoro="25" short="5" long="15" />
         </div>
+
+        <hr className="setting__divider my-4" />
+
+        <div className="flex flex-column g-3">
+          <ToggleOption id="auto-break" label="Auto start breaks" />
+          <ToggleOption id="auto-pomodoros" label="Auto start pomodoros" />
+          <div className="flex justify-content-between align-items-center">
+            <label htmlFor="intervals">Long break intervals</label>
+            <input
+              type="number"
+              name="intervals"
+              id="intervals"
+              className="input-text"
+              style={{ width: '15%' }}
+              min={1}
+              max={6}
+            />
+          </div>
+        </div>
       </Modal.Body>
     </Modal>
   )
@@ -49,6 +68,20 @@ function TimeOption({ title, pomodoro, short, long }) {
   )
 }
 
+function ToggleOption({ id, label }) {
+  return (
+    <div className="flex align-items-center justify-content-between">
+      <label htmlFor={id}>{label}</label>
+      <ToggleSwitch id={id} size="0.7em" />
+    </div>
+  )
+}
+
+SettingModal.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+}
+
 TimeOption.propTypes = {
   title: PropTypes.string.isRequired,
   pomodoro: PropTypes.string.isRequired,
@@ -56,9 +89,9 @@ TimeOption.propTypes = {
   long: PropTypes.string.isRequired,
 }
 
-SettingModal.propTypes = {
-  visible: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
+ToggleOption.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 }
 
 export default SettingModal
