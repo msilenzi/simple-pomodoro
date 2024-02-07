@@ -25,6 +25,8 @@
     0px 2px 8px transparentize($textColor, 0.85);
   animation: slide-up 0.5s ease-in-out forwards;
 
+  display: flex;
+  flex-direction: column;
 
   &.modal--small {
     width: 300px;
@@ -85,4 +87,8 @@
 
 .modal__footer {
   border-top: 1px solid $gray-300;
+}
+
+.modal__body {
+  overflow: auto;
 }

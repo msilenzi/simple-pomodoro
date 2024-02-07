@@ -1,7 +1,15 @@
-function ModalBody() {
+import PropTypes from 'prop-types'
+
+function ModalBody({children}) {
   return (
-    <div>ModalBody</div>
+    <div className="modal__body">
+      {children}
+    </div>
   )
+}
+
+ModalBody.propTypes = {
+  children: PropTypes.node.isRequired
 }
 
 export default ModalBody
