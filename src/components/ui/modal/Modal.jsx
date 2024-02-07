@@ -5,16 +5,16 @@ import ModalHeader from './ModalHeader'
 
 function Modal({ children, visible, size, handleClose, ...otherProps }) {
   if (!visible) return null
-  
+
   function close(e) {
     if (e.target === e.currentTarget) handleClose()
   }
 
   return (
     <div className="modal__container" onClick={close}>
-      <dialog {...otherProps} className={`modal modal--${size}`} open>
+      <div {...otherProps} className={`modal modal--${size}`} open>
         {children}
-      </dialog>
+      </div>
     </div>
   )
 }

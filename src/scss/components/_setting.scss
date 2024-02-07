@@ -32,6 +32,5 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: map-get($spacers, 4);
-  width: calc(100% - 8px);
   margin: 0 auto;
 }

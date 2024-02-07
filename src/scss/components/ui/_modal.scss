@@ -8,14 +8,13 @@
   background-color: transparentize($black, .5);
   backdrop-filter: blur(12px);
   animation: fade-bg 0.25s ease-in-out;
+  overflow: auto;
 }
 
 .modal {
-  margin-top: 12vh;
-  margin-top: 12svh;
+  margin: 10vh auto;
+  margin: 10svh auto;
   max-width: 90vw;
-  max-height: 80vh;
-  max-height: 80svh;
   border: none;
   background-color: $bodyColor;
   color: $textColor;
@@ -24,9 +23,6 @@
   box-shadow: 0px 0.5px 2px transparentize($textColor, 0.85),
     0px 2px 8px transparentize($textColor, 0.85);
   animation: slide-up 0.5s ease-in-out forwards;
-
-  display: flex;
-  flex-direction: column;
 
   &.modal--small {
     width: 300px;
@@ -87,8 +83,4 @@
 
 .modal__footer {
   border-top: 1px solid $gray-300;
-}
-
-.modal__body {
-  overflow: auto;
 }

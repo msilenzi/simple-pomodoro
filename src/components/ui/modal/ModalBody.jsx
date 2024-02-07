@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 function ModalBody({children}) {
   return (
-    <div className="modal__body">
+    <div>
       {children}
     </div>
   )
