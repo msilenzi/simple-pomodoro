@@ -63,6 +63,29 @@ export function PomodoroProvider({ children }) {
     dispatch({ type: POMODORO_ACTIONS.CHANGE_TO_LONG_BREAK, payload: { step } })
   }
 
+  function setTime(stage, newTimeMinutes) {
+    const newTimeSeconds = newTimeMinutes * 60
+
+    if (stage === current.stage) {
+      const elapsedTime = settings.times[stage] * 60 - current.time
+      const newCurrentTime = newTimeSeconds - elapsedTime
+
+      if (newCurrentTime > 0) {
+        dispatch({
+          type: POMODORO_ACTIONS.SET_CURRENT_TIME,
+          payload: { time: newCurrentTime },
+        })
+      } else {
+        nextStage()
+      }
+    }
+
+    dispatch({
+      type: POMODORO_ACTIONS.SET_TIME_SETTING,
+      payload: { stage, newTime: newTimeMinutes },
+    })
+  }
+
   useEffect(() => {
     let intervalId
     if (current.isRunning) intervalId = setInterval(updateTimer, 1000)
@@ -89,6 +112,7 @@ export function PomodoroProvider({ children }) {
         jumpToPomodoro,
         jumpToShortBreak,
         jumpToLongBreak,
+        setTime,
       }}
     >
       {children}

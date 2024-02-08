@@ -23,6 +23,8 @@ export const POMODORO_ACTIONS = Object.freeze({
   CHANGE_TO_SHORT_BREAK: 'CHANGE_TO_SHORT_BREAK',
   RESET_STAGE: 'RESET_STAGE',
   JUMP_TO_STEP: 'JUMP_TO_STEP',
+  SET_TIME_SETTING: 'SET_TIME_SETTING',
+  SET_CURRENT_TIME: 'SET_CURRENT_TIME',
 })
 
 //! Remove "= pomodoroInitialState", it's only for IntelliSense
@@ -54,7 +56,7 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
           time: state.settings.times.pomodoro * 60,
           stage: 'pomodoro',
           isRunning: state.settings.autoStartPomodoros,
-          step: payload.step
+          step: payload.step,
         },
       }
 
@@ -66,7 +68,7 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
           time: state.settings.times.longBreak * 60,
           stage: 'longBreak',
           isRunning: state.settings.autoStartBreaks,
-          step: payload.step
+          step: payload.step,
         },
       }
 
@@ -78,7 +80,7 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
           time: state.settings.times.shortBreak * 60,
           stage: 'shortBreak',
           isRunning: state.settings.autoStartBreaks,
-          step: payload.step
+          step: payload.step,
         },
       }
 
@@ -97,6 +99,27 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
         current: {
           ...state.current,
           step: payload.step,
+        },
+      }
+
+    case POMODORO_ACTIONS.SET_TIME_SETTING:
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          times: {
+            ...state.settings.times,
+            [payload.stage]: payload.newTime,
+          },
+        },
+      }
+
+    case POMODORO_ACTIONS.SET_CURRENT_TIME:
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          time: payload.time,
         },
       }
 
