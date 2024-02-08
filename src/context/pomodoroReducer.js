@@ -55,10 +55,7 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
           time: state.settings.times.pomodoro * 60,
           stage: 'pomodoro',
           isRunning: state.settings.autoStartPomodoros,
-          step:
-            state.current.step === state.settings.steps
-              ? 1
-              : state.current.step + 1,
+          step: payload.step
         },
       }
 
@@ -70,6 +67,7 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
           time: state.settings.times.longBreak * 60,
           stage: 'longBreak',
           isRunning: state.settings.autoStartBreaks,
+          step: payload.step
         },
       }
 
@@ -81,6 +79,7 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
           time: state.settings.times.shortBreak * 60,
           stage: 'shortBreak',
           isRunning: state.settings.autoStartBreaks,
+          step: payload.step
         },
       }
 
