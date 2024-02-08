@@ -5,19 +5,27 @@ import { usePomodoroContext } from '@Hooks'
 function Controls() {
   const {
     current: { isRunning },
+    toggleIsRunning,
   } = usePomodoroContext()
 
   return (
     <div className="flex flex-centered g-5 mt-5">
       <Control icon={<Reset />} />
-      <Control icon={isRunning ? <Pause /> : <Play />} />
+      <Control
+        icon={isRunning ? <Pause /> : <Play />}
+        onClick={toggleIsRunning}
+      />
       <Control icon={<Skip />} />
     </div>
   )
 }
 
-function Control({ icon }) {
-  return <button className="pomodoro__control btn">{icon}</button>
+function Control({ icon, ...otherProps }) {
+  return (
+    <button {...otherProps} className="pomodoro__control btn">
+      {icon}
+    </button>
+  )
 }
 
 Control.propTypes = {
