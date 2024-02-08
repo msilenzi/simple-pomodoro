@@ -5,20 +5,29 @@ function Steps() {
   const {
     current: { step },
     settings: { steps },
+    changeToStep,
   } = usePomodoroContext()
 
   return (
     <div className="flex flex-centered g-4">
       {Array.from({ length: steps }, (_, i) => (
-        <Step key={i} isActive={step - 1 === i} />
+        <Step
+          key={i}
+          isActive={step === i + 1}
+          onClick={() => changeToStep(i + 1)}
+        />
       ))}
     </div>
   )
 }
 
-function Step({ isActive = false }) {
+function Step({ isActive = false, ...otherProps }) {
   return (
-    <button className="pomodoro__step btn" data-is-active={isActive}></button>
+    <button
+      {...otherProps}
+      className="pomodoro__step btn"
+      data-is-active={isActive}
+    ></button>
   )
 }
 
