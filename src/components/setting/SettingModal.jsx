@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { Modal } from '@Components/ui/modal'
 import { InputGroup, ToggleSwitch } from '@Components/ui/form'
+import { pomodoroPresets } from '@Assets/data'
 
 function SettingModal({ visible, handleClose }) {
   return (
@@ -29,9 +30,15 @@ function SettingModal({ visible, handleClose }) {
         </div>
         <p>You can also choose one of the following options:</p>
         <div className="flex flex-column g-3">
-          <TimeOption title="Normal" pomodoro="25" short="5" long="15" />
-          <TimeOption title="Large" pomodoro="45" short="8" long="30" />
-          <TimeOption title="Normal" pomodoro="25" short="5" long="15" />
+          {Object.values(pomodoroPresets).map(({ title, times }) => (
+            <TimeOption
+              title={title}
+              pomodoro={times.pomodoro.toString()}
+              short={times.shortBreak.toString()}
+              long={times.longBreak.toString()}
+              key={title}
+            />
+          ))}
         </div>
 
         <hr className="setting__divider my-4" />
