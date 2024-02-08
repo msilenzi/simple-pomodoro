@@ -7,7 +7,7 @@ function useForm(initialForm) {
     setFormState({ ...formState, [e.target.name]: e.target.value })
   }
 
-  return { formState, handleInputChange }
+  return { formState, setFormState, handleInputChange }
 }
 
 export { useForm }

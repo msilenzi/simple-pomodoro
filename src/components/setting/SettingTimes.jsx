@@ -1,15 +1,24 @@
 import { InputGroup } from '@Components/ui/form'
 import { usePomodoroContext } from '@Hooks'
 import { useForm } from '@Hooks/useForm'
+import { useEffect } from 'react'
 
 function SettingTimes() {
   const { settings, setTime } = usePomodoroContext()
 
-  const { formState, handleInputChange } = useForm({
+  const { formState, setFormState, handleInputChange } = useForm({
     pomodoro: settings.times.pomodoro,
     shortBreak: settings.times.shortBreak,
     longBreak: settings.times.longBreak,
   })
+
+  useEffect(() => {
+    setFormState({
+      pomodoro: settings.times.pomodoro,
+      shortBreak: settings.times.shortBreak,
+      longBreak: settings.times.longBreak,
+    })
+  }, [settings.times, setFormState])
 
   return (
     <div className="setting__times mb-4">

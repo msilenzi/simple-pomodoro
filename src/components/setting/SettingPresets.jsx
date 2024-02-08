@@ -22,7 +22,13 @@ function SettingPresets() {
 }
 
 function TimeOption({ title, pomodoro, shortBreak, longBreak }) {
-  const { settings } = usePomodoroContext()
+  const { settings, setTime } = usePomodoroContext()
+
+  function handleClick() {
+    setTime('pomodoro', pomodoro)
+    setTime('shortBreak', shortBreak)
+    setTime('longBreak', longBreak)
+  }
 
   const isActive =
     settings.times.pomodoro === pomodoro &&
@@ -34,6 +40,7 @@ function TimeOption({ title, pomodoro, shortBreak, longBreak }) {
       className="setting__preset p-3"
       data-is-active={isActive}
       role="button"
+      onClick={handleClick}
     >
       <p className="fw-700 m-0 mb-2">{title}</p>
       <p className="m-0">
