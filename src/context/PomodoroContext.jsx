@@ -32,8 +32,8 @@ export function PomodoroProvider({ children }) {
     dispatch({ type: POMODORO_ACTIONS.RESET_STAGE })
   }
 
-  function changeToStep(step) {
-    dispatch({ type: POMODORO_ACTIONS.CHANGE_TO_STEP, payload: { step } })
+  function jumpToStep(step) {
+    dispatch({ type: POMODORO_ACTIONS.JUMP_TO_STEP, payload: { step } })
   }
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export function PomodoroProvider({ children }) {
         toggleIsRunning,
         nextStage,
         resetStage,
-        changeToStep,
+        jumpToStep,
       }}
     >
       {children}

@@ -5,7 +5,7 @@ function Steps() {
   const {
     current: { step },
     settings: { steps },
-    changeToStep,
+    jumpToStep,
   } = usePomodoroContext()
 
   return (
@@ -14,7 +14,7 @@ function Steps() {
         <Step
           key={i}
           isActive={step === i + 1}
-          onClick={() => changeToStep(i + 1)}
+          onClick={() => jumpToStep(i + 1)}
         />
       ))}
     </div>

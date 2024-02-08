@@ -22,7 +22,7 @@ export const POMODORO_ACTIONS = Object.freeze({
   CHANGE_TO_LONG_BREAK: 'CHANGE_TO_LONG_BREAK',
   CHANGE_TO_SHORT_BREAK: 'CHANGE_TO_SHORT_BREAK',
   RESET_STAGE: 'RESET_STAGE',
-  CHANGE_TO_STEP: 'CHANGE_TO_STEP',
+  JUMP_TO_STEP: 'JUMP_TO_STEP',
 })
 
 //! Remove "= pomodoroInitialState", it's only for IntelliSense
@@ -93,7 +93,7 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
         },
       }
 
-    case POMODORO_ACTIONS.CHANGE_TO_STEP:
+    case POMODORO_ACTIONS.JUMP_TO_STEP:
       return {
         ...state,
         current: {
