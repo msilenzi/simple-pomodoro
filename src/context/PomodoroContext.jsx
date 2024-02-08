@@ -11,6 +11,23 @@ export function PomodoroProvider({ children }) {
   const [state, dispatch] = useReducer(pomodoroReducer, pomodoroInitialState)
   const { settings, current } = state
 
+  const nextStage = useCallback(
+    function nextStage() {
+      if (current.stage !== 'pomodoro') {
+        dispatch({ type: POMODORO_ACTIONS.CHANGE_TO_POMODORO })
+      } else if (current.step === settings.steps) {
+        dispatch({ type: POMODORO_ACTIONS.CHANGE_TO_LONG_BREAK })
+      } else {
+        dispatch({ type: POMODORO_ACTIONS.CHANGE_TO_SHORT_BREAK })
+      }
+    },
+    [current.stage, current.step, settings.steps]
+  )
+
+  function toggleIsRunning() {
+    dispatch({ type: POMODORO_ACTIONS.TOGGLE_IS_RUNNING })
+  }
+
   useEffect(() => {
     let intervalId
     if (current.isRunning) intervalId = setInterval(updateTimer, 1000)
@@ -19,31 +36,17 @@ export function PomodoroProvider({ children }) {
     function updateTimer() {
       if (current.time > 0) {
         dispatch({ type: POMODORO_ACTIONS.DECREMENT_TIME })
-        return
+      } else {
+        nextStage()
       }
-
-      if (current.stage === 'pomodoro') {
-        if (current.step === settings.steps) {
-          dispatch({ type: POMODORO_ACTIONS.CHANGE_TO_LONG_BREAK })
-        } else {
-          dispatch({ type: POMODORO_ACTIONS.CHANGE_TO_SHORT_BREAK })
-        }
-        return
-      }
-
-      dispatch({type: POMODORO_ACTIONS.CHANGE_TO_POMODORO})
     }
-  }, [current, settings.steps])
+  }, [current, settings.steps, nextStage])
 
   return (
     <PomodoroContext.Provider value={{ settings, current, toggleIsRunning }}>
       {children}
     </PomodoroContext.Provider>
   )
-
-  function toggleIsRunning() {
-    dispatch({ type: POMODORO_ACTIONS.TOGGLE_IS_RUNNING })
-  }
 }
 
 PomodoroProvider.propTypes = {
