@@ -39,11 +39,16 @@
   border: 1px solid $gray-600;
   border-radius: map-get($spacers, 2);
   transition: .1s ease all;
+  cursor: pointer;
 
-  &:hover {
+  &[data-is-active="true"] {
     background-color: $gray-200;
     border-color: $textColor;
-    cursor: pointer;
+  }
+
+  &:hover {
+    background-color: $gray-300;
+    border-color: $textColor;
   }
 }
 
