@@ -21,6 +21,7 @@ export const POMODORO_ACTIONS = Object.freeze({
   CHANGE_TO_POMODORO: 'CHANGE_TO_POMODORO',
   CHANGE_TO_LONG_BREAK: 'CHANGE_TO_LONG_BREAK',
   CHANGE_TO_SHORT_BREAK: 'CHANGE_TO_SHORT_BREAK',
+  RESET_STAGE: 'RESET_STAGE',
 })
 
 //! Remove "= pomodoroInitialState", it's only for IntelliSense
@@ -79,6 +80,15 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
           time: state.settings.times.shortBreak * 60,
           stage: 'shortBreak',
           isRunning: state.settings.autoStartBreaks,
+        },
+      }
+
+    case POMODORO_ACTIONS.RESET_STAGE:
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          time: state.settings.times[state.current.stage] * 60,
         },
       }
 

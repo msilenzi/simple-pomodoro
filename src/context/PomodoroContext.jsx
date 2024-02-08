@@ -28,6 +28,10 @@ export function PomodoroProvider({ children }) {
     dispatch({ type: POMODORO_ACTIONS.TOGGLE_IS_RUNNING })
   }
 
+  function resetStage() {
+    dispatch({ type: POMODORO_ACTIONS.RESET_STAGE })
+  }
+
   useEffect(() => {
     let intervalId
     if (current.isRunning) intervalId = setInterval(updateTimer, 1000)
@@ -43,7 +47,9 @@ export function PomodoroProvider({ children }) {
   }, [current, settings.steps, nextStage])
 
   return (
-    <PomodoroContext.Provider value={{ settings, current, toggleIsRunning }}>
+    <PomodoroContext.Provider
+      value={{ settings, current, toggleIsRunning, nextStage, resetStage }}
+    >
       {children}
     </PomodoroContext.Provider>
   )
