@@ -1,12 +1,4 @@
 const pomodoroPresets = {
-  test: {
-    title: 'Test',
-    times: {
-      pomodoro: 0.05,
-      shortBreak: 0.05,
-      longBreak: 0.05,
-    },
-  },
   normal: {
     title: 'Normal',
     times: {

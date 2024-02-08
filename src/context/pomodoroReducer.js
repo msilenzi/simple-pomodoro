@@ -2,13 +2,13 @@ import { pomodoroPresets } from '@Assets/data'
 
 export const pomodoroInitialState = {
   settings: {
-    times: pomodoroPresets.test.times,
+    times: pomodoroPresets.normal.times,
     autoStartPomodoros: true, //! false
     autoStartBreaks: true, //! false
     steps: 4,
   },
   current: {
-    time: pomodoroPresets.test.times.pomodoro * 60,
+    time: pomodoroPresets.normal.times.pomodoro * 60,
     stage: 'pomodoro',
     step: 1,
     isRunning: false,
