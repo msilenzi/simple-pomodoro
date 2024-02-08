@@ -27,7 +27,6 @@ export const POMODORO_ACTIONS = Object.freeze({
 
 //! Remove "= pomodoroInitialState", it's only for IntelliSense
 function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
-  console.log(type)
   switch (type) {
     case POMODORO_ACTIONS.DECREMENT_TIME:
       return {
