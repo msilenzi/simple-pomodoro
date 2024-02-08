@@ -1,11 +1,14 @@
+import { usePomodoroContext } from '@Hooks'
 import PropTypes from 'prop-types'
 
 function Stages() {
+  const {current} = usePomodoroContext()
+
   return (
     <div className="flex flex-centered g-2 mb-4">
-      <Stage name="Pomodoro" isActive />
-      <Stage name="Short Break" />
-      <Stage name="Long Break" />
+      <Stage name="Pomodoro" isActive={current.stage === 'pomodoro'} />
+      <Stage name="Short Break" isActive={current.stage === 'shortBreak'} />
+      <Stage name="Long Break" isActive={current.stage === 'longBreak'} />
     </div>
   )
 }
