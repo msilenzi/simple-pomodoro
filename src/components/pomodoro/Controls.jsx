@@ -6,16 +6,18 @@ function Controls() {
   const {
     current: { isRunning },
     toggleIsRunning,
+    nextStage,
+    resetStage,
   } = usePomodoroContext()
 
   return (
     <div className="flex flex-centered g-5 mt-5">
-      <Control icon={<Reset />} />
+      <Control icon={<Reset />} onClick={resetStage} />
       <Control
         icon={isRunning ? <Pause /> : <Play />}
         onClick={toggleIsRunning}
       />
-      <Control icon={<Skip />} />
+      <Control icon={<Skip />} onClick={nextStage} />
     </div>
   )
 }
