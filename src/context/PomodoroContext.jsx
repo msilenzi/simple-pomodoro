@@ -64,6 +64,7 @@ export function PomodoroProvider({ children }) {
   }
 
   function setTime(stage, newTimeMinutes) {
+    newTimeMinutes = parseInt(newTimeMinutes, 10)
     const newTimeSeconds = newTimeMinutes * 60
 
     if (stage === current.stage) {
