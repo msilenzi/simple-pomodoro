@@ -10,7 +10,10 @@
       "@Components/*": ["components/*"],
 
       "@Context": ["context/index"],
-      "@Context/*": ["context/*"]
+      "@Context/*": ["context/*"],
+
+      "@Hooks": ["hooks/index"],
+      "@Hooks/*": ["hooks/*"],
     }
   },
   "include": ["src"],
