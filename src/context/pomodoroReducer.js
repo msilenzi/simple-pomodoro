@@ -3,8 +3,8 @@ import { pomodoroPresets } from '@Assets/data'
 export const pomodoroInitialState = {
   settings: {
     times: pomodoroPresets.normal.times,
-    autostartPomodoros: true, //! false
-    autostartBreaks: true, //! false
+    autostartPomodoros: false,
+    autostartBreaks: false,
     steps: 4,
   },
   current: {
@@ -30,8 +30,7 @@ export const POMODORO_ACTIONS = Object.freeze({
   SET_STEPS: 'SET_STEPS',
 })
 
-//! Remove "= pomodoroInitialState", it's only for IntelliSense
-function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
+function pomodoroReducer(state, { type, payload }) {
   switch (type) {
     case POMODORO_ACTIONS.DECREMENT_TIME:
       return {
@@ -128,8 +127,6 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
       }
 
     case POMODORO_ACTIONS.SET_AUTOSTART_BREAKS:
-      console.log(type, payload)
-
       return {
         ...state,
         settings: {
@@ -139,8 +136,6 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
       }
 
     case POMODORO_ACTIONS.SET_AUTOSTART_POMODOROS:
-      console.log(type, payload)
-
       return {
         ...state,
         settings: {
@@ -150,7 +145,6 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
       }
 
     case POMODORO_ACTIONS.SET_STEPS:
-      console.log(type, payload)
       return {
         ...state,
         current: {

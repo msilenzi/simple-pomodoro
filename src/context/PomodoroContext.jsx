@@ -151,7 +151,7 @@ export function PomodoroProvider({ children }) {
 
   useEffect(() => {
     let intervalId
-    if (current.isRunning) intervalId = setInterval(updateTimer, 6)
+    if (current.isRunning) intervalId = setInterval(updateTimer, 1000)
     return () => clearInterval(intervalId)
 
     function updateTimer() {
