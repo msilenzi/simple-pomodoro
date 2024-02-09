@@ -87,9 +87,70 @@ export function PomodoroProvider({ children }) {
     })
   }
 
+  function setAutostartBreaks(value) {
+    dispatch({
+      type: POMODORO_ACTIONS.SET_AUTOSTART_BREAKS,
+      payload: { value },
+    })
+  }
+
+  function setAutostartPomodoros(value) {
+    dispatch({
+      type: POMODORO_ACTIONS.SET_AUTOSTART_POMODOROS,
+      payload: { value },
+    })
+  }
+
+  function setSteps(newSteps) {
+    newSteps = parseInt(newSteps, 10)
+
+    if (newSteps === settings.steps) return
+
+    const payload = {
+      current: {
+        time: current.time,
+        stage: current.stage,
+        step: current.step,
+        isRunning: current.isRunning,
+      },
+      settings: {
+        steps: newSteps,
+      },
+    }
+
+    if (current.step > newSteps) {
+      payload.current.step = newSteps
+      if (current.stage === 'shortBreak') {
+        payload.current.stage = 'longBreak'
+        const elapsedTime = settings.times.shortBreak * 60 - current.time
+        payload.current.time = settings.times.longBreak * 60 - elapsedTime
+        if (payload.current.time < 0) {
+          payload.current.time = settings.times.pomodoro * 60
+          payload.current.stage = 'pomodoro'
+          payload.current.isRunning =
+            settings.autostartPomodoros && current.isRunning
+          payload.current.step = 1
+        }
+      }
+    } else if (current.stage === 'longBreak') {
+      payload.current.stage = 'shortBreak'
+      const elapsedTime = settings.times.longBreak * 60 - current.time
+      payload.current.time = settings.times.shortBreak * 60 - elapsedTime
+      if (payload.current.time < 0) {
+        payload.current.time = settings.times.pomodoro * 60
+        payload.current.stage = 'pomodoro'
+        payload.current.isRunning =
+          settings.autostartPomodoros && current.isRunning
+        payload.current.step = current.step + 1
+      }
+    }
+  
+    dispatch({ type: POMODORO_ACTIONS.SET_STEPS, payload })
+  }
+
   useEffect(() => {
     let intervalId
-    if (current.isRunning) intervalId = setInterval(updateTimer, 1000)
+    if (current.isRunning) intervalId = setInterval(updateTimer, 6)
     return () => clearInterval(intervalId)
 
     function updateTimer() {
@@ -114,6 +175,9 @@ export function PomodoroProvider({ children }) {
         jumpToShortBreak,
         jumpToLongBreak,
         setTime,
+        setAutostartBreaks,
+        setAutostartPomodoros,
+        setSteps,
       }}
     >
       {children}

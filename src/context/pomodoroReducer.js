@@ -3,8 +3,8 @@ import { pomodoroPresets } from '@Assets/data'
 export const pomodoroInitialState = {
   settings: {
     times: pomodoroPresets.normal.times,
-    autoStartPomodoros: true, //! false
-    autoStartBreaks: true, //! false
+    autostartPomodoros: true, //! false
+    autostartBreaks: true, //! false
     steps: 4,
   },
   current: {
@@ -25,6 +25,9 @@ export const POMODORO_ACTIONS = Object.freeze({
   JUMP_TO_STEP: 'JUMP_TO_STEP',
   SET_TIME_SETTING: 'SET_TIME_SETTING',
   SET_CURRENT_TIME: 'SET_CURRENT_TIME',
+  SET_AUTOSTART_BREAKS: 'SET_AUTOSTART_BREAKS',
+  SET_AUTOSTART_POMODOROS: 'SET_AUTOSTART_POMODOROS',
+  SET_STEPS: 'SET_STEPS',
 })
 
 //! Remove "= pomodoroInitialState", it's only for IntelliSense
@@ -56,7 +59,7 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
           time: state.settings.times.pomodoro * 60,
           stage: 'pomodoro',
           isRunning:
-            state.settings.autoStartPomodoros && state.current.isRunning,
+            state.settings.autostartPomodoros && state.current.isRunning,
           step: payload.step,
         },
       }
@@ -68,7 +71,7 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
           ...state.current,
           time: state.settings.times.longBreak * 60,
           stage: 'longBreak',
-          isRunning: state.settings.autoStartBreaks && state.current.isRunning,
+          isRunning: state.settings.autostartBreaks && state.current.isRunning,
           step: payload.step,
         },
       }
@@ -80,7 +83,7 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
           ...state.current,
           time: state.settings.times.shortBreak * 60,
           stage: 'shortBreak',
-          isRunning: state.settings.autoStartBreaks && state.current.isRunning,
+          isRunning: state.settings.autostartBreaks && state.current.isRunning,
           step: payload.step,
         },
       }
@@ -121,6 +124,42 @@ function pomodoroReducer(state = pomodoroInitialState, { type, payload }) {
         current: {
           ...state.current,
           time: payload.time,
+        },
+      }
+
+    case POMODORO_ACTIONS.SET_AUTOSTART_BREAKS:
+      console.log(type, payload)
+
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          autostartBreaks: payload.value,
+        },
+      }
+
+    case POMODORO_ACTIONS.SET_AUTOSTART_POMODOROS:
+      console.log(type, payload)
+
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          autostartPomodoros: payload.value,
+        },
+      }
+
+    case POMODORO_ACTIONS.SET_STEPS:
+      console.log(type, payload)
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          ...payload.current,
+        },
+        settings: {
+          ...state.settings,
+          ...payload.settings,
         },
       }
 
