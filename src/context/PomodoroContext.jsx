@@ -8,8 +8,22 @@ import pomodoroReducer, {
 
 export const PomodoroContext = createContext(pomodoroInitialState)
 
+function initReducer() {
+  const settings =
+    JSON.parse(localStorage.getItem('settings')) ??
+    pomodoroInitialState.settings
+
+  return {
+    settings,
+    current: {
+      ...pomodoroInitialState.current,
+      time: settings.times.pomodoro * 60,
+    },
+  }
+}
+
 export function PomodoroProvider({ children }) {
-  const [state, dispatch] = useReducer(pomodoroReducer, pomodoroInitialState)
+  const [state, dispatch] = useReducer(pomodoroReducer, null, initReducer)
   const { settings, current } = state
 
   const nextStage = useCallback(() => {
@@ -148,6 +162,10 @@ export function PomodoroProvider({ children }) {
 
     dispatch({ type: POMODORO_ACTIONS.SET_STEPS, payload })
   }
+
+  useEffect(() => {
+    localStorage.setItem('settings', JSON.stringify(state.settings))
+  }, [state.settings])
 
   useEffect(() => {
     let intervalId
