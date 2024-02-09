@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { createContext, useCallback, useEffect, useReducer } from 'react'
+import { BellSound } from '@Assets/sounds'
 import pomodoroReducer, {
   POMODORO_ACTIONS,
   pomodoroInitialState,
@@ -144,7 +145,7 @@ export function PomodoroProvider({ children }) {
         payload.current.step = current.step + 1
       }
     }
-  
+
     dispatch({ type: POMODORO_ACTIONS.SET_STEPS, payload })
   }
 
@@ -157,6 +158,7 @@ export function PomodoroProvider({ children }) {
       if (current.time > 0) {
         dispatch({ type: POMODORO_ACTIONS.DECREMENT_TIME })
       } else {
+        new Audio(BellSound).play()
         nextStage()
       }
     }
