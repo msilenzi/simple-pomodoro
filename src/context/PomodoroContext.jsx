@@ -26,6 +26,14 @@ export function PomodoroProvider({ children }) {
   const [state, dispatch] = useReducer(pomodoroReducer, null, initReducer)
   const { settings, current } = state
 
+  // --->
+
+  function getElapsedTime(stage) {
+    return settings.times[stage] * 60 - current.time
+  }
+
+  // --->
+
   const nextStage = useCallback(() => {
     if (current.stage !== 'pomodoro') {
       dispatch({
@@ -83,8 +91,7 @@ export function PomodoroProvider({ children }) {
     const newTimeSeconds = newTimeMinutes * 60
 
     if (stage === current.stage) {
-      const elapsedTime = settings.times[stage] * 60 - current.time
-      const newCurrentTime = newTimeSeconds - elapsedTime
+      const newCurrentTime = newTimeSeconds - getElapsedTime(stage)
 
       if (newCurrentTime > 0) {
         dispatch({
@@ -137,8 +144,7 @@ export function PomodoroProvider({ children }) {
       payload.current.step = newSteps
       if (current.stage === 'shortBreak') {
         payload.current.stage = 'longBreak'
-        const elapsedTime = settings.times.shortBreak * 60 - current.time
-        payload.current.time = settings.times.longBreak * 60 - elapsedTime
+        payload.current.time = settings.times.longBreak * 60 - getElapsedTime('shortBreak')
         if (payload.current.time < 0) {
           payload.current.time = settings.times.pomodoro * 60
           payload.current.stage = 'pomodoro'
@@ -149,8 +155,7 @@ export function PomodoroProvider({ children }) {
       }
     } else if (current.stage === 'longBreak') {
       payload.current.stage = 'shortBreak'
-      const elapsedTime = settings.times.longBreak * 60 - current.time
-      payload.current.time = settings.times.shortBreak * 60 - elapsedTime
+      payload.current.time = settings.times.shortBreak * 60 - getElapsedTime('longBreak')
       if (payload.current.time < 0) {
         payload.current.time = settings.times.pomodoro * 60
         payload.current.stage = 'pomodoro'
