@@ -71,18 +71,18 @@ export function PomodoroProvider({ children }) {
     dispatch({ type: POMODORO_ACTIONS.JUMP_TO_STEP, payload: { step } })
   }
 
-  function jumpToPomodoro(step) {
+  function changeToPomodoro(step) {
     dispatch({ type: POMODORO_ACTIONS.CHANGE_TO_POMODORO, payload: { step } })
   }
 
-  function jumpToShortBreak(step) {
+  function changeToShortBreak(step) {
     dispatch({
       type: POMODORO_ACTIONS.CHANGE_TO_SHORT_BREAK,
       payload: { step },
     })
   }
 
-  function jumpToLongBreak(step) {
+  function changeToLongBreak(step) {
     dispatch({ type: POMODORO_ACTIONS.CHANGE_TO_LONG_BREAK, payload: { step } })
   }
 
@@ -196,9 +196,9 @@ export function PomodoroProvider({ children }) {
         nextStage,
         resetStage,
         jumpToStep,
-        jumpToPomodoro,
-        jumpToShortBreak,
-        jumpToLongBreak,
+        changeToPomodoro,
+        changeToShortBreak,
+        changeToLongBreak,
         setTime,
         setAutostartBreaks,
         setAutostartPomodoros,

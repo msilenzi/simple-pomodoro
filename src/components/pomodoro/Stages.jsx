@@ -2,7 +2,7 @@ import { usePomodoroContext } from '@Hooks'
 import PropTypes from 'prop-types'
 
 function Stages() {
-  const { current, settings, jumpToPomodoro, jumpToShortBreak, jumpToLongBreak } =
+  const { current, settings, changeToPomodoro, changeToShortBreak, changeToLongBreak } =
     usePomodoroContext()
 
   return (
@@ -10,17 +10,17 @@ function Stages() {
       <Stage
         name="Pomodoro"
         isActive={current.stage === 'pomodoro'}
-        onClick={() => jumpToPomodoro(current.step)}
+        onClick={() => changeToPomodoro(current.step)}
       />
       <Stage
         name="Short Break"
         isActive={current.stage === 'shortBreak'}
-        onClick={() => jumpToShortBreak(current.step)}
+        onClick={() => changeToShortBreak(current.step)}
       />
       <Stage
         name="Long Break"
         isActive={current.stage === 'longBreak'}
-        onClick={() => jumpToLongBreak(settings.steps)}
+        onClick={() => changeToLongBreak(settings.steps)}
       />
     </div>
   )
