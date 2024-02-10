@@ -76,6 +76,8 @@ export function PomodoroProvider({ children }) {
   }
 
   function jumpToStep(step) {
+    if (step === current.step) return
+
     if (
       step === settings.steps &&
       current.stage === 'shortBreak' &&
@@ -105,6 +107,8 @@ export function PomodoroProvider({ children }) {
   }
 
   function setTime(stage, newTimeMinutes) {
+    if (newTimeMinutes === settings.times[stage]) return
+
     const newTimeSeconds = newTimeMinutes * 60
 
     if (stage === current.stage) {
@@ -127,6 +131,8 @@ export function PomodoroProvider({ children }) {
   }
 
   function setAutostartBreaks(value) {
+    if (value === settings.autostartBreaks) return
+
     dispatch({
       type: POMODORO_ACTIONS.SET_AUTOSTART_BREAKS,
       payload: { value },
@@ -134,6 +140,8 @@ export function PomodoroProvider({ children }) {
   }
 
   function setAutostartPomodoros(value) {
+    if (value === settings.autostartPomodoros) return
+
     dispatch({
       type: POMODORO_ACTIONS.SET_AUTOSTART_POMODOROS,
       payload: { value },
