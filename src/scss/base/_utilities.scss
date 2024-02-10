@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 //
 //* SPACING
 
@@ -58,7 +60,7 @@ $sides: (
   h#{$n},
   .h#{$n} {
     font-size: $size;
-    margin: 0 0 $font-size-base / 2 0;
+    margin: 0 0 math.div($font-size-base, 2) 0;
     font-weight: 500;
     line-height: 1.2;
   }
