@@ -28,6 +28,7 @@ export const POMODORO_ACTIONS = Object.freeze({
   SET_AUTOSTART_BREAKS: 'SET_AUTOSTART_BREAKS',
   SET_AUTOSTART_POMODOROS: 'SET_AUTOSTART_POMODOROS',
   SET_STEPS: 'SET_STEPS',
+  JUMP_TO_STAGE: 'JUMP_TO_STAGE',
 })
 
 function pomodoroReducer(state, { type, payload }) {
@@ -147,13 +148,19 @@ function pomodoroReducer(state, { type, payload }) {
     case POMODORO_ACTIONS.SET_STEPS:
       return {
         ...state,
-        current: {
-          ...state.current,
-          ...payload.current,
-        },
         settings: {
           ...state.settings,
-          ...payload.settings,
+          steps: payload.steps,
+        },
+      }
+
+    case POMODORO_ACTIONS.JUMP_TO_STAGE:
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          stage: payload.stage,
+          time: payload.time,
         },
       }
 

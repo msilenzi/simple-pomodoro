@@ -26,13 +26,21 @@ export function PomodoroProvider({ children }) {
   const [state, dispatch] = useReducer(pomodoroReducer, null, initReducer)
   const { settings, current } = state
 
-  // --->
-
-  function getElapsedTime(stage) {
+  function __getElapsedTime(stage) {
     return settings.times[stage] * 60 - current.time
   }
 
-  // --->
+  function __jumpToStage(newStage) {
+    const payload = {
+      stage: newStage,
+      time: settings.times[newStage] * 60 - __getElapsedTime(current.stage),
+    }
+
+    if (payload.time < 0) return false
+
+    dispatch({ type: POMODORO_ACTIONS.JUMP_TO_STAGE, payload })
+    return true
+  }
 
   const nextStage = useCallback(() => {
     if (current.stage !== 'pomodoro') {
@@ -91,7 +99,7 @@ export function PomodoroProvider({ children }) {
     const newTimeSeconds = newTimeMinutes * 60
 
     if (stage === current.stage) {
-      const newCurrentTime = newTimeSeconds - getElapsedTime(stage)
+      const newCurrentTime = newTimeSeconds - __getElapsedTime(stage)
 
       if (newCurrentTime > 0) {
         dispatch({
@@ -128,44 +136,16 @@ export function PomodoroProvider({ children }) {
 
     if (newSteps === settings.steps) return
 
-    const payload = {
-      current: {
-        time: current.time,
-        stage: current.stage,
-        step: current.step,
-        isRunning: current.isRunning,
-      },
-      settings: {
-        steps: newSteps,
-      },
+    if (current.step >= newSteps) {
+      jumpToStep(newSteps)
+      if (current.stage === 'shortBreak' && !__jumpToStage('longBreak')) {
+        changeToPomodoro(1)
+      }
+    } else if (current.stage === 'longBreak' && !__jumpToStage('shortBreak')) {
+      changeToPomodoro(current.step + 1)
     }
 
-    if (current.step > newSteps) {
-      payload.current.step = newSteps
-      if (current.stage === 'shortBreak') {
-        payload.current.stage = 'longBreak'
-        payload.current.time = settings.times.longBreak * 60 - getElapsedTime('shortBreak')
-        if (payload.current.time < 0) {
-          payload.current.time = settings.times.pomodoro * 60
-          payload.current.stage = 'pomodoro'
-          payload.current.isRunning =
-            settings.autostartPomodoros && current.isRunning
-          payload.current.step = 1
-        }
-      }
-    } else if (current.stage === 'longBreak') {
-      payload.current.stage = 'shortBreak'
-      payload.current.time = settings.times.shortBreak * 60 - getElapsedTime('longBreak')
-      if (payload.current.time < 0) {
-        payload.current.time = settings.times.pomodoro * 60
-        payload.current.stage = 'pomodoro'
-        payload.current.isRunning =
-          settings.autostartPomodoros && current.isRunning
-        payload.current.step = current.step + 1
-      }
-    }
-
-    dispatch({ type: POMODORO_ACTIONS.SET_STEPS, payload })
+    dispatch({ type: POMODORO_ACTIONS.SET_STEPS, payload: { steps: newSteps } })
   }
 
   useEffect(() => {
