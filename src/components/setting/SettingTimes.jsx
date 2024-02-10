@@ -20,34 +20,50 @@ function SettingTimes() {
     })
   }, [settings.times, setFormState])
 
+  function handleBlur(e) {
+    const stage = e.target.name
+    const value = formState[stage]
+    const min = parseInt(e.target.min, 10)
+    const max = parseInt(e.target.max, 10)
+
+    if (value < min || value > max) {
+      setFormState({ ...formState, [stage]: settings.times[stage] })
+    } else {
+      setTime(stage, value)
+    }
+  }
+
   return (
     <div className="setting__times mb-4">
       <InputGroup
         id="pomodoro"
         type="number"
         label="Pomodoro"
-        min="1"
+        min={1}
+        max={120}
         value={formState.pomodoro}
         onChange={handleInputChange}
-        onBlur={() => setTime('pomodoro', formState.pomodoro)}
+        onBlur={handleBlur}
       />
       <InputGroup
         id="shortBreak"
         type="number"
         label="Short Break"
-        min="1"
+        min={1}
+        max={120}
         value={formState.shortBreak}
         onChange={handleInputChange}
-        onBlur={() => setTime('shortBreak', formState.shortBreak)}
+        onBlur={handleBlur}
       />
       <InputGroup
         id="longBreak"
         type="number"
         label="Long Break"
-        min="1"
+        min={1}
+        max={120}
         value={formState.longBreak}
         onChange={handleInputChange}
-        onBlur={() => setTime('longBreak', formState.longBreak)}
+        onBlur={handleBlur}
       />
     </div>
   )

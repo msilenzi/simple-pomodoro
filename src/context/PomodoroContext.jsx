@@ -105,7 +105,6 @@ export function PomodoroProvider({ children }) {
   }
 
   function setTime(stage, newTimeMinutes) {
-    newTimeMinutes = parseInt(newTimeMinutes, 10)
     const newTimeSeconds = newTimeMinutes * 60
 
     if (stage === current.stage) {
@@ -142,8 +141,6 @@ export function PomodoroProvider({ children }) {
   }
 
   function setSteps(newSteps) {
-    newSteps = parseInt(newSteps, 10)
-
     if (newSteps === settings.steps) return
 
     if (current.step >= newSteps) {

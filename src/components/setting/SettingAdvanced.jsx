@@ -6,7 +6,7 @@ import { useForm } from '@Hooks/useForm'
 function SettingAdvanced() {
   const { settings, setAutostartBreaks, setAutostartPomodoros, setSteps } =
     usePomodoroContext()
-  const { formState, handleInputChange } = useForm({
+  const { formState, setFormState, handleInputChange } = useForm({
     autostartPomodoros: settings.autostartPomodoros,
     autostartBreaks: settings.autostartBreaks,
     steps: settings.steps,
@@ -20,6 +20,17 @@ function SettingAdvanced() {
   function handleAutostartPomodorosChange(e) {
     handleInputChange(e)
     setAutostartPomodoros(e.target.checked)
+  }
+
+  function handleBlur(e) {
+    const min = parseInt(e.target.min, 10)
+    const max = parseInt(e.target.max, 10)
+
+    if (formState.steps < min || formState.steps > max) {
+      setFormState({ ...formState, steps: settings.steps })
+    } else {
+      setSteps(formState.steps)
+    }
   }
 
   return (
@@ -48,7 +59,7 @@ function SettingAdvanced() {
           max={8}
           value={formState.steps}
           onChange={handleInputChange}
-          onBlur={() => setSteps(formState.steps)}
+          onBlur={handleBlur}
         />
       </div>
     </div>

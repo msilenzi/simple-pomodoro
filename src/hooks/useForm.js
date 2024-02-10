@@ -4,8 +4,15 @@ function useForm(initialForm) {
   const [formState, setFormState] = useState(initialForm)
 
   function handleInputChange(e) {
-    const value =
-      e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    let value
+
+    if (e.target.type === 'checkbox') {
+      value = e.target.checked
+    } else if (e.target.type === 'number') {
+      value = e.target.value === '' ? '' : Number(e.target.value)
+    } else {
+      value = e.target.value
+    }
 
     setFormState({ ...formState, [e.target.name]: value })
   }
