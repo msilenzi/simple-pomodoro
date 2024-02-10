@@ -76,7 +76,17 @@ export function PomodoroProvider({ children }) {
   }
 
   function jumpToStep(step) {
-    dispatch({ type: POMODORO_ACTIONS.JUMP_TO_STEP, payload: { step } })
+    if (
+      step === settings.steps &&
+      current.stage === 'shortBreak' &&
+      !__jumpToStage('longBreak')
+    ) {
+      changeToPomodoro(1)
+    } else if (current.stage === 'longBreak' && !__jumpToStage('shortBreak')) {
+      changeToPomodoro(step + 1)
+    } else {
+      dispatch({ type: POMODORO_ACTIONS.JUMP_TO_STEP, payload: { step } })
+    }
   }
 
   function changeToPomodoro(step) {

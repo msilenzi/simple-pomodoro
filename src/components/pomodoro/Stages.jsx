@@ -2,8 +2,13 @@ import { usePomodoroContext } from '@Hooks'
 import PropTypes from 'prop-types'
 
 function Stages() {
-  const { current, settings, changeToPomodoro, changeToShortBreak, changeToLongBreak } =
-    usePomodoroContext()
+  const {
+    current,
+    settings,
+    changeToPomodoro,
+    changeToShortBreak,
+    changeToLongBreak,
+  } = usePomodoroContext()
 
   return (
     <div className="flex flex-centered g-2 mb-4">
@@ -15,6 +20,7 @@ function Stages() {
       <Stage
         name="Short Break"
         isActive={current.stage === 'shortBreak'}
+        disabled={current.step === settings.steps}
         onClick={() => changeToShortBreak(current.step)}
       />
       <Stage
