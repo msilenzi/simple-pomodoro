@@ -37,7 +37,7 @@ function SettingAdvanced() {
         onChange={handleAutostartPomodorosChange}
       />
       <div className="flex justify-content-between align-items-center">
-        <label htmlFor="intervals">Long break intervals</label>
+        <label htmlFor="steps">Long break intervals</label>
         <input
           type="number"
           name="steps"
