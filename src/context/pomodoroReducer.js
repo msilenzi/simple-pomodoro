@@ -148,6 +148,10 @@ function pomodoroReducer(state, { type, payload }) {
     case POMODORO_ACTIONS.SET_STEPS:
       return {
         ...state,
+        current: {
+          ...state.current,
+          step: payload.step,
+        },
         settings: {
           ...state.settings,
           steps: payload.steps,

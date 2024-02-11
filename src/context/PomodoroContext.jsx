@@ -151,8 +151,10 @@ export function PomodoroProvider({ children }) {
   function setSteps(newSteps) {
     if (newSteps === settings.steps) return
 
+    const payload = { step: current.step, steps: newSteps }
+
     if (current.step >= newSteps) {
-      jumpToStep(newSteps)
+      payload.step = newSteps
       if (current.stage === 'shortBreak' && !__jumpToStage('longBreak')) {
         changeToPomodoro(1)
       }
@@ -160,7 +162,7 @@ export function PomodoroProvider({ children }) {
       changeToPomodoro(current.step + 1)
     }
 
-    dispatch({ type: POMODORO_ACTIONS.SET_STEPS, payload: { steps: newSteps } })
+    dispatch({ type: POMODORO_ACTIONS.SET_STEPS, payload: payload })
   }
 
   useEffect(() => {
