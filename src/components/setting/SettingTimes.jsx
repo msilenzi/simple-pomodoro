@@ -22,11 +22,13 @@ function SettingTimes() {
 
   function handleBlur(e) {
     const stage = e.target.name
-    const value = formState[stage]
+    const value = parseInt(e.target.value, 10)
     const min = parseInt(e.target.min, 10)
     const max = parseInt(e.target.max, 10)
 
-    if (value < min || value > max) {
+    setFormState({ ...formState, [stage]: value })
+
+    if (isNaN(value) || value < min || value > max) {
       setFormState({ ...formState, [stage]: settings.times[stage] })
     } else {
       setTime(stage, value)
@@ -39,8 +41,9 @@ function SettingTimes() {
         id="pomodoro"
         type="number"
         label="Pomodoro"
-        min={1}
-        max={120}
+        min="1"
+        max="120"
+        step="1"
         value={formState.pomodoro}
         onChange={handleInputChange}
         onBlur={handleBlur}
@@ -49,8 +52,9 @@ function SettingTimes() {
         id="shortBreak"
         type="number"
         label="Short Break"
-        min={1}
-        max={120}
+        min="1"
+        max="120"
+        step="1"
         value={formState.shortBreak}
         onChange={handleInputChange}
         onBlur={handleBlur}
@@ -59,8 +63,9 @@ function SettingTimes() {
         id="longBreak"
         type="number"
         label="Long Break"
-        min={1}
-        max={120}
+        min="1"
+        max="120"
+        step="1"
         value={formState.longBreak}
         onChange={handleInputChange}
         onBlur={handleBlur}

@@ -23,13 +23,16 @@ function SettingAdvanced() {
   }
 
   function handleBlur(e) {
+    const value = parseInt(e.target.value, 10)
     const min = parseInt(e.target.min, 10)
     const max = parseInt(e.target.max, 10)
 
-    if (formState.steps < min || formState.steps > max) {
+    setFormState({ ...formState, steps: value })
+
+    if (isNaN(value) || value < min || value > max) {
       setFormState({ ...formState, steps: settings.steps })
     } else {
-      setSteps(formState.steps)
+      setSteps(value)
     }
   }
 
@@ -55,8 +58,9 @@ function SettingAdvanced() {
           id="steps"
           className="input-text"
           style={{ width: '15%' }}
-          min={1}
-          max={8}
+          min="1"
+          max="8"
+          step="1"
           value={formState.steps}
           onChange={handleInputChange}
           onBlur={handleBlur}
