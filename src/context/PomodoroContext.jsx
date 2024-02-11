@@ -1,5 +1,11 @@
 import PropTypes from 'prop-types'
-import { createContext, useCallback, useEffect, useReducer } from 'react'
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 import { BellSound } from '@Assets/sounds'
 import pomodoroReducer, {
   POMODORO_ACTIONS,
@@ -171,18 +177,21 @@ export function PomodoroProvider({ children }) {
 
   useEffect(() => {
     let intervalId
-    if (current.isRunning) intervalId = setInterval(updateTimer, 1000)
-    return () => clearInterval(intervalId)
-
-    function updateTimer() {
-      if (current.time > 0) {
+    if (current.isRunning) {
+      intervalId = setInterval(() => {
         dispatch({ type: POMODORO_ACTIONS.DECREMENT_TIME })
-      } else {
-        new Audio(BellSound).play()
-        nextStage()
-      }
+      }, 1000)
     }
-  }, [current, settings.steps, nextStage])
+
+    return () => clearInterval(intervalId)
+  }, [current.isRunning])
+
+  useEffect(() => {
+    if (current.time === 0) {
+      new Audio(BellSound).play()
+      nextStage()
+    }
+  }, [current.time, nextStage])
 
   return (
     <PomodoroContext.Provider
