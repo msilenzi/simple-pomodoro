@@ -50,7 +50,7 @@ $shadow: 0px 0.5px 2px transparentize($textColor, 0.85);
 }
 
 .pomodoro__timer {
-  font-size: 8rem;
+  font-size: clamp(4.8rem, 32vw , 8rem);
   line-height: 1;
   text-shadow: $shadow, 0px 2px 8px transparentize($textColor, 0.85);
 }

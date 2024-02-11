@@ -57,7 +57,7 @@ function SettingAdvanced() {
           name="steps"
           id="steps"
           className="input-text"
-          style={{ width: '15%' }}
+          style={{ width: '3.2rem' }}
           min="1"
           max="8"
           step="1"
