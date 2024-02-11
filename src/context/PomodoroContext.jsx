@@ -1,11 +1,5 @@
 import PropTypes from 'prop-types'
-import {
-  createContext,
-  useCallback,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react'
+import { createContext, useCallback, useEffect, useReducer } from 'react'
 import { BellSound } from '@Assets/sounds'
 import pomodoroReducer, {
   POMODORO_ACTIONS,
