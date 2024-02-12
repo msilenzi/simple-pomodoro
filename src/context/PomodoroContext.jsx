@@ -5,6 +5,7 @@ import pomodoroReducer, {
   POMODORO_ACTIONS,
   pomodoroInitialState,
 } from './pomodoroReducer'
+import { secondsToTime } from '@Utils'
 
 export const PomodoroContext = createContext(pomodoroInitialState)
 
@@ -179,6 +180,18 @@ export function PomodoroProvider({ children }) {
 
     return () => clearInterval(intervalId)
   }, [current.isRunning])
+
+  useEffect(() => {
+    const titles = {
+      pomodoro: 'Pomodoro',
+      shortBreak: 'Short Break',
+      longBreak: 'Long Break',
+    }
+
+    document.title = `${secondsToTime(current.time)} - #${current.step} ${
+      titles[current.stage]
+    }`
+  }, [current.stage, current.step, current.time])
 
   useEffect(() => {
     if (current.time === 0) {
