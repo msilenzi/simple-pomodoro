@@ -1,3 +1,4 @@
 import zeroFill from './zeroFill'
+import secondsToTime from './secondsToTime'
 
-export { zeroFill }
+export { zeroFill, secondsToTime }
