@@ -5,6 +5,7 @@ export const pomodoroInitialState = {
     times: pomodoroPresets.normal.times,
     autostartPomodoros: false,
     autostartBreaks: false,
+    showNotifications: true,
     steps: 4,
   },
   current: {
@@ -27,6 +28,7 @@ export const POMODORO_ACTIONS = Object.freeze({
   SET_CURRENT_TIME: 'SET_CURRENT_TIME',
   SET_AUTOSTART_BREAKS: 'SET_AUTOSTART_BREAKS',
   SET_AUTOSTART_POMODOROS: 'SET_AUTOSTART_POMODOROS',
+  SET_SHOW_NOTIFICATIONS: 'SET_SHOW_NOTIFICATIONS',
   SET_STEPS: 'SET_STEPS',
   JUMP_TO_STAGE: 'JUMP_TO_STAGE',
 })
@@ -142,6 +144,15 @@ function pomodoroReducer(state, { type, payload }) {
         settings: {
           ...state.settings,
           autostartPomodoros: payload.value,
+        },
+      }
+
+    case POMODORO_ACTIONS.SET_SHOW_NOTIFICATIONS:
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          showNotifications: payload.value,
         },
       }
 

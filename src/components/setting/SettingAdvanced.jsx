@@ -4,22 +4,24 @@ import { usePomodoroContext } from '@Hooks'
 import { useForm } from '@Hooks/useForm'
 
 function SettingAdvanced() {
-  const { settings, setAutostartBreaks, setAutostartPomodoros, setSteps } =
-    usePomodoroContext()
+  const {
+    settings,
+    setAutostartBreaks,
+    setAutostartPomodoros,
+    setShowNotifications,
+    setSteps,
+  } = usePomodoroContext()
+
   const { formState, setFormState, handleInputChange } = useForm({
     autostartPomodoros: settings.autostartPomodoros,
     autostartBreaks: settings.autostartBreaks,
+    showNotifications: settings.showNotifications,
     steps: settings.steps,
   })
 
-  function handleAutostartBreaksChange(e) {
+  function handleToggle(e, callback) {
     handleInputChange(e)
-    setAutostartBreaks(e.target.checked)
-  }
-
-  function handleAutostartPomodorosChange(e) {
-    handleInputChange(e)
-    setAutostartPomodoros(e.target.checked)
+    callback(e.target.checked)
   }
 
   function handleBlur(e) {
@@ -42,13 +44,19 @@ function SettingAdvanced() {
         id="autostartBreaks"
         label="Auto start breaks"
         checked={formState.autostartBreaks}
-        onChange={handleAutostartBreaksChange}
+        onChange={(e) => handleToggle(e, setAutostartBreaks)}
       />
       <ToggleOption
         id="autostartPomodoros"
         label="Auto start pomodoros"
         checked={formState.autostartPomodoros}
-        onChange={handleAutostartPomodorosChange}
+        onChange={(e) => handleToggle(e, setAutostartPomodoros)}
+      />
+      <ToggleOption
+        id="showNotifications"
+        label="Show notifications"
+        checked={formState.showNotifications}
+        onChange={(e) => handleToggle(e, setShowNotifications)}
       />
       <div className="flex justify-content-between align-items-center">
         <label htmlFor="steps">Long break intervals</label>

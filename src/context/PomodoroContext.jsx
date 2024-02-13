@@ -152,6 +152,15 @@ export function PomodoroProvider({ children }) {
     })
   }
 
+  function setShowNotifications(value) {
+    if (value === settings.showNotifications) return
+
+    dispatch({
+      type: POMODORO_ACTIONS.SET_SHOW_NOTIFICATIONS,
+      payload: { value },
+    })
+  }
+
   function setSteps(newSteps) {
     if (newSteps === settings.steps) return
 
@@ -200,9 +209,9 @@ export function PomodoroProvider({ children }) {
     if (current.time === 0) {
       new Audio(BellSound).play()
       const newStage = nextStage()
-      showEndStageNotification(newStage)
+      settings.showNotifications && showEndStageNotification(newStage)
     }
-  }, [current.time, nextStage])
+  }, [current.time, settings.showNotifications, nextStage])
 
   return (
     <PomodoroContext.Provider
@@ -219,6 +228,7 @@ export function PomodoroProvider({ children }) {
         setTime,
         setAutostartBreaks,
         setAutostartPomodoros,
+        setShowNotifications,
         setSteps,
       }}
     >
