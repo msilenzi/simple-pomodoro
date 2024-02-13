@@ -5,7 +5,7 @@ import pomodoroReducer, {
   POMODORO_ACTIONS,
   pomodoroInitialState,
 } from './pomodoroReducer'
-import { secondsToTime } from '@Utils'
+import { secondsToTime, showEndStageNotification } from '@Utils'
 
 export const PomodoroContext = createContext(pomodoroInitialState)
 
@@ -51,6 +51,7 @@ export function PomodoroProvider({ children }) {
           step: current.step === settings.steps ? 1 : current.step + 1,
         },
       })
+      return 'pomodoro'
     } else if (current.step === settings.steps) {
       dispatch({
         type: POMODORO_ACTIONS.CHANGE_TO_LONG_BREAK,
@@ -58,6 +59,7 @@ export function PomodoroProvider({ children }) {
           step: current.step,
         },
       })
+      return 'longBreak'
     } else {
       dispatch({
         type: POMODORO_ACTIONS.CHANGE_TO_SHORT_BREAK,
@@ -65,6 +67,7 @@ export function PomodoroProvider({ children }) {
           step: current.step,
         },
       })
+      return 'shortBreak'
     }
   }, [current.stage, current.step, settings.steps])
 
@@ -196,7 +199,8 @@ export function PomodoroProvider({ children }) {
   useEffect(() => {
     if (current.time === 0) {
       new Audio(BellSound).play()
-      nextStage()
+      const newStage = nextStage()
+      showEndStageNotification(newStage)
     }
   }, [current.time, nextStage])
 

@@ -1,3 +1,4 @@
+import notificationMessages from './notificationMessages'
 import pomodoroPresets from './pomodoroPresets'
 
-export { pomodoroPresets }
+export { notificationMessages, pomodoroPresets }

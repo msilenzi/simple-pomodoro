@@ -1,4 +1,6 @@
-import zeroFill from './zeroFill'
+import getRandomNumber from './getRandomNumber'
 import secondsToTime from './secondsToTime'
+import showEndStageNotification from './showEndStageNotification'
+import zeroFill from './zeroFill'
 
-export { zeroFill, secondsToTime }
+export { getRandomNumber, secondsToTime, showEndStageNotification, zeroFill }
